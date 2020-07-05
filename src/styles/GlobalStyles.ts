@@ -3,7 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 export default createGlobalStyle`
 
   :root {
-    --primary: #F4F7FC;
+    --buttonface: #F4F7FC;
     --secondary: #F5F5F5;
     --tertiary: #DDDDDD;
 
@@ -14,6 +14,7 @@ export default createGlobalStyle`
     --gray: #999999;
     --text-black: #222222;
     --text-button: #4A507B;
+
   }
 
   * {
@@ -29,22 +30,13 @@ export default createGlobalStyle`
 
   body {
     background: var(--white);
-    color: var(--white);
-    -webkit-font-smoothing: antialiased;
-  }
-
-  *, button, input {
-    border: 0;
-    outline: 0;
+    color: var(--black);
   }
 
   body, input, button, p, span {
-    font-family: Lato, sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 16px;
-  }
-
-  div {
-    display: block;
+    -webkit-font-smoothing: antialiased;
   }
 
   button {

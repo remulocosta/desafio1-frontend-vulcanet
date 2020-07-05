@@ -1,0 +1,65 @@
+{
+  "plans":[
+  {
+    "id": 1,
+    "name": "Plano 1.0",
+    "description": "Perfeito para experimentar o peçaZap",
+    "prices": {
+      "monthly": 150,
+      "yearly": 120
+    },
+    "features": [
+      "Até 1000 clientes",
+      "Workflow padrão",
+      "Fila de atendimento",
+      "Menu de atendimento",
+      "Carteirização",
+      "Mensagem noturna"
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Plano 2.0",
+    "description": "Perfeito para vender mais",
+    "prices": {
+      "monthly": 250,
+      "yearly": 230
+    },
+    "features": [
+      "Todos os recursos do Plano 1.0",
+      "Usuários ilimitados",
+      "Relacionamento de vendas",
+      "Vendas por chat no site",
+      "Vendas por WhatsApp",
+      "Gestão de contatos",
+      "Implantação e treinamento",
+      "Suporte em horário comercial"
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Plano Turbo",
+    "description": "Perfeito para escalar as vendas",
+    "prices": {
+      "monthly": 450,
+      "yearly": 430
+    },
+    "features": [
+      "Todos os recursos do Plano 2.0",
+      "Vendas por Mercado Livre",
+      "Vendas por ChatBot",
+      "Suporte NOC 24 horas",
+      "Workflows avançados",
+      "Aplicativo mobile para smartphone",
+      "Acompanhamento mensal",
+      "Integração com CRM e ERP",
+      "Relatórios gerenciais",
+      "Histórico de conversas",
+      "Integração CTI"
+    ]
+  }
+],
+"attendant":{
+  "cost": 130
+  }
+}
