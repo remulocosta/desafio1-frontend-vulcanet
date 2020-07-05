@@ -29,14 +29,15 @@ export default createGlobalStyle`
   }
 
   body {
+    min-height: 100vh;
     background: var(--white);
     color: var(--black);
   }
 
   body, input, button, p, span {
-    font-family: 'Roboto', sans-serif;
-    font-size: 16px;
-    -webkit-font-smoothing: antialiased;
+    font-family: 'Lato', sans-serif;
+    font-size: 1.5rem;
+    /* -webkit-font-smoothing: antialiased; */
   }
 
   button {

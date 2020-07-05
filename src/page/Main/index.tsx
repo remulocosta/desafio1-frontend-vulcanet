@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaChevronRight, FaChevronLeft } from 'react-icons/fa';
 
 import CheckCircle from '../../assets/check-circle.svg';
 import Balloon from '../../assets/pz-icon.svg';
@@ -36,14 +37,10 @@ const Layout: React.FC = () => {
             <span>Perfeito para experimentar o peçaZap</span>
           </HeaderPlan>
 
-          <PlanPrice>
-            <p>R$150/mês</p>
-          </PlanPrice>
+          <PlanPrice>R$150/mês</PlanPrice>
 
           <div>
-            <ButtonSelectPlan>
-              <p>Selecionar</p>
-            </ButtonSelectPlan>
+            <ButtonSelectPlan>Selecionar</ButtonSelectPlan>
           </div>
 
           <ContentFeatures>
@@ -77,19 +74,15 @@ const Layout: React.FC = () => {
           <HeaderPlan>
             <div>
               <img src={Balloon} alt="pz-icon" />
-              <h1>Plano 2.0</h1>
+              <p>Plano 1.0</p>
             </div>
-            <p>Perfeito para experimentar o peçaZap</p>
+            <span>Perfeito para experimentar o peçaZap</span>
           </HeaderPlan>
 
-          <PlanPrice>
-            <p>R$150/mês</p>
-          </PlanPrice>
+          <PlanPrice>R$150/mês</PlanPrice>
 
           <div>
-            <ButtonSelectPlan>
-              <p>Selecionar</p>
-            </ButtonSelectPlan>
+            <ButtonSelectPlan>Selecionar</ButtonSelectPlan>
           </div>
 
           <ContentFeatures>
@@ -123,18 +116,16 @@ const Layout: React.FC = () => {
           <HeaderPlan>
             <div>
               <img src={Balloon} alt="pz-icon" />
-              <h1>Plano 3.0</h1>
+              <p>Plano 1.0</p>
             </div>
-            <p>Perfeito para experimentar o peçaZap</p>
+            <span>Perfeito para experimentar o peçaZap</span>
           </HeaderPlan>
 
-          <PlanPrice>
-            <p>R$150/mês</p>
-          </PlanPrice>
+          <PlanPrice>R$150/mês</PlanPrice>
 
           <div>
-            <ButtonSelectPlan>
-              <p>Selecionar</p>
+            <ButtonSelectPlan style={{ background: '#43B998', color: '#FFF' }}>
+              Selecionar
             </ButtonSelectPlan>
           </div>
 
@@ -174,11 +165,11 @@ const Layout: React.FC = () => {
         </div>
         <ContentAttendantButtons>
           <button type="button">
-            <p> - </p>
+            <FaChevronLeft size={15} />
           </button>
           <p>0</p>
           <button type="button">
-            <p>+</p>
+            <FaChevronRight size={15} />
           </button>
         </ContentAttendantButtons>
       </ContentAttendant>
