@@ -69,7 +69,8 @@ const Layout: React.FC = () => {
   }, []);
 
   const handleConfirmation = useCallback(() => {
-    toast.success('Plano cadastrado com sucesso');
+    toast.configure();
+    toast('Compra efetuada com sucesso!');
   }, []);
 
   useEffect(() => {
@@ -165,7 +166,7 @@ const Layout: React.FC = () => {
             }`}
           </span>
         </div>
-        <button type="button" onClick={handleConfirmation}>
+        <button type="button" onClick={() => handleConfirmation()}>
           Contratar
         </button>
       </ContentFooter>
