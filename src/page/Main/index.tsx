@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { FaChevronRight, FaChevronLeft } from 'react-icons/fa';
+import { toast } from 'react-toastify';
 
 import CheckCircle from '../../assets/check-circle.svg';
 import Balloon from '../../assets/pz-icon.svg';
@@ -65,6 +66,10 @@ const Layout: React.FC = () => {
 
       setAttendantCost(attendant?.cost);
     });
+  }, []);
+
+  const handleConfirmation = useCallback(() => {
+    toast.success('Plano cadastrado com sucesso');
   }, []);
 
   useEffect(() => {
@@ -160,7 +165,9 @@ const Layout: React.FC = () => {
             }`}
           </span>
         </div>
-        <button type="button">Contratar</button>
+        <button type="button" onClick={handleConfirmation}>
+          Contratar
+        </button>
       </ContentFooter>
     </Container>
   );
