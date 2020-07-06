@@ -68,11 +68,6 @@ const Layout: React.FC = () => {
     });
   }, []);
 
-  const handleConfirmation = useCallback(() => {
-    toast.configure();
-    toast('Compra efetuada com sucesso!');
-  }, []);
-
   useEffect(() => {
     api.get(`/plans`).then((response) => {
       const Plans = response.data as IPlan[];
@@ -88,19 +83,34 @@ const Layout: React.FC = () => {
   }, [setPlans]);
 
   const planAmount = useMemo(() => {
-    const planValue = period
+    let planValue = period
       ? selectedPlan.prices?.yearly
       : selectedPlan.prices?.monthly;
 
+    planValue += attendantCost * attendantAmount;
+
     return planValue;
-  }, [period, selectedPlan]);
+  }, [period, selectedPlan, attendantCost, attendantAmount]);
+
+  const handleConfirmation = useCallback(() => {
+    toast(
+      <div>
+        <p>
+          <b>Compra efetuada com sucesso!</b>
+        </p>
+        <span>Plano Selecionado: {selectedPlan.name}</span>
+        <br />
+        Total: R${planAmount}/mês
+      </div>,
+    );
+  }, [planAmount, selectedPlan.name]);
 
   return (
     <Container>
       <ContentPeriod>
         <button type="button" onClick={handleTogglePeriod}>
-          <div className={period ? 'selected' : 'not-selected'}>Mensal</div>
-          <div className={!period ? 'selected' : 'not-selected'}>Anual</div>
+          <div className={!period ? 'selected' : 'not-selected'}>Mensal</div>
+          <div className={period ? 'selected' : 'not-selected'}>Anual</div>
         </button>
       </ContentPeriod>
 

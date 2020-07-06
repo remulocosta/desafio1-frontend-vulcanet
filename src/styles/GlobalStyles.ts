@@ -36,7 +36,8 @@ export default createGlobalStyle`
 
   body, input, button, p, span {
     font-family: 'Lato', sans-serif;
-    /* font-size: 1.2rem; */
+    font-size: 16px;
+    /* font-size: 1.5rem; */
     /* -webkit-font-smoothing: antialiased; */
   }
 

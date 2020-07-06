@@ -112,6 +112,7 @@ export const ButtonSelectPlan = styled.button<IButtonProps>`
     css`
       background-color: var(--green);
       color: var(--white);
+      cursor: not-allowed;
     `}
 `;
 
@@ -137,13 +138,13 @@ export const ContentFeatures = styled.ul`
 
 export const ContentAttendant = styled.div`
   width: 100%;
+  height: fit-content;
   display: flex;
   align-items: center;
-  padding: 40px 40px 3px;
+  padding: 0 0 4px 40px;
 
   p {
     font-size: 32px;
-    line-height: 20px;
   }
 
   span {
@@ -154,9 +155,8 @@ export const ContentAttendant = styled.div`
 `;
 
 export const ContentAttendantButtons = styled.div`
-  margin: 0 0 10px 50px;
+  margin-left: 50px;
   display: flex;
-  -webkit-box-align: center;
   align-items: center;
 
   button {
@@ -185,9 +185,9 @@ export const ContentFooter = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 28px 20px 27px;
+  padding: 40px 20px;
   border-radius: 0 0 15px 15px;
-  /* height: 108px; */
+  height: 108px;
   background: var(--blue);
   /* margin-top: 10px; */
   align-self: flex-end;
@@ -196,7 +196,7 @@ export const ContentFooter = styled.div`
     font-family: Lato;
     font-weight: bold;
     font-size: 32px;
-    line-height: 24px;
+    /* line-height: 24px; */
     color: var(--white);
   }
 
