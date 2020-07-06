@@ -1,4 +1,8 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+interface IButtonProps {
+  selected: boolean;
+}
 
 export const Container = styled.div`
   width: 1150px;
@@ -28,12 +32,6 @@ export const ContentPeriod = styled.div`
       font-size: 15px;
       font-weight: bold;
       line-height: 20px;
-    }
-
-    .button-mensal {
-    }
-
-    .button-anual {
     }
 
     .selected {
@@ -97,7 +95,7 @@ export const PlanPrice = styled.div`
   margin-top: 24px;
 `;
 
-export const ButtonSelectPlan = styled.button`
+export const ButtonSelectPlan = styled.button<IButtonProps>`
   color: var(--text-button);
   background-color: #efefef;
   width: 100%;
@@ -108,6 +106,13 @@ export const ButtonSelectPlan = styled.button`
   border-radius: 100px;
   border-style: none;
   transition: all 0.2s ease 0s;
+
+  ${(props) =>
+    props.selected &&
+    css`
+      background-color: var(--green);
+      color: var(--white);
+    `}
 `;
 
 export const ContentFeatures = styled.ul`
