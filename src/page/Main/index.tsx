@@ -35,7 +35,6 @@ const Layout: React.FC = () => {
   const [selectedPlan, SetSelectedPlan] = useState<IPlan>({} as IPlan);
   const [attendantAmount, setAttendantAmount] = useState(0);
   const [attendantCost, setAttendantCost] = useState(0);
-  // const [planAmmount, setPlanAmmount] = useState(0);
 
   const handleAttendantAmount = useCallback((newValue: number) => {
     setAttendantAmount((value) => {
