@@ -33,16 +33,13 @@ interface IPlan {
 const Layout: React.FC = () => {
   const [plans, setPlans] = useState<IPlan[]>([]);
   const [period, setPeriod] = useState(false);
-  const [selectedPlan, SetSelectedPlan] = useState<IPlan>({} as IPlan);
+  const [selectedPlan, setSelectedPlan] = useState<IPlan>({} as IPlan);
   const [attendantAmount, setAttendantAmount] = useState(0);
   const [attendantCost, setAttendantCost] = useState(0);
 
   const handleAttendantAmount = useCallback((newValue: number) => {
     setAttendantAmount((value) => {
-      if (value <= 0 && newValue === -1) {
-        return 0;
-      }
-      return value + newValue;
+      return value <= 0 && newValue === -1 ? 0 : value + newValue;
     });
   }, []);
 
@@ -50,7 +47,7 @@ const Layout: React.FC = () => {
     (planId: number) => {
       const selected = plans.filter((plan) => plan.id === planId);
       if (selected[0]) {
-        SetSelectedPlan(selected[0]);
+        setSelectedPlan(selected[0]);
       }
     },
     [plans],
@@ -77,7 +74,7 @@ const Layout: React.FC = () => {
       const selected = Plans.filter((plan) => plan.id === 2);
 
       if (selected[0]) {
-        SetSelectedPlan(selected[0]);
+        setSelectedPlan(selected[0]);
       }
     });
   }, [setPlans]);
@@ -94,14 +91,14 @@ const Layout: React.FC = () => {
 
   const handleConfirmation = useCallback(() => {
     toast(
-      <div>
+      <>
         <p>
           <b>Compra efetuada com sucesso!</b>
         </p>
         <span>Plano Selecionado: {selectedPlan.name}</span>
         <br />
         Total: R${planAmount}/mês
-      </div>,
+      </>,
     );
   }, [planAmount, selectedPlan.name]);
 
