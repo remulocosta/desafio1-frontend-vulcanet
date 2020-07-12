@@ -3,10 +3,12 @@ import { FaChevronRight, FaChevronLeft } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 
 import CheckCircle from '../../assets/check-circle.svg';
+import Loading from '../../assets/loading.svg';
 import Balloon from '../../assets/pz-icon.svg';
 import api from '../../services/api';
 import {
   Container,
+  LoadingLooping,
   ContentPeriod,
   ContentPlans,
   Plan,
@@ -31,6 +33,7 @@ interface IPlan {
 }
 
 const Layout: React.FC = () => {
+  const [loading, setLoading] = useState(false);
   const [plans, setPlans] = useState<IPlan[]>([]);
   const [period, setPeriod] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState<IPlan>({} as IPlan);
@@ -66,6 +69,8 @@ const Layout: React.FC = () => {
   }, []);
 
   useEffect(() => {
+    setLoading(true);
+
     api.get(`/plans`).then((response) => {
       const Plans = response.data as IPlan[];
 
@@ -76,6 +81,7 @@ const Layout: React.FC = () => {
       if (selected[0]) {
         setSelectedPlan(selected[0]);
       }
+      setLoading(false);
     });
   }, [setPlans]);
 
@@ -104,79 +110,87 @@ const Layout: React.FC = () => {
 
   return (
     <Container>
-      <ContentPeriod>
-        <button type="button" onClick={handleTogglePeriod}>
-          <div className={!period ? 'selected' : 'not-selected'}>Mensal</div>
-          <div className={period ? 'selected' : 'not-selected'}>Anual</div>
-        </button>
-      </ContentPeriod>
-
-      <ContentPlans>
-        {plans.map((plan) => (
-          <Plan key={plan.id}>
-            <HeaderPlan>
-              <div>
-                <img src={Balloon} alt="pz-icon" />
-                <p>{plan.name}</p>
+      {loading ? (
+        <LoadingLooping>
+          <img src={Loading} alt="Loading" />
+        </LoadingLooping>
+      ) : (
+        <>
+          <ContentPeriod>
+            <button type="button" onClick={handleTogglePeriod}>
+              <div className={!period ? 'selected' : 'not-selected'}>
+                Mensal
               </div>
-              <span>{plan.description}</span>
-            </HeaderPlan>
+              <div className={period ? 'selected' : 'not-selected'}>Anual</div>
+            </button>
+          </ContentPeriod>
+          <ContentPlans>
+            {plans.map((plan) => (
+              <Plan key={plan.id}>
+                <HeaderPlan>
+                  <div>
+                    <img src={Balloon} alt="pz-icon" />
+                    <p>{plan.name}</p>
+                  </div>
+                  <span>{plan.description}</span>
+                </HeaderPlan>
 
-            {period ? (
-              <PlanPrice>{`R$${plan.prices.yearly}/anual`}</PlanPrice>
-            ) : (
-              <PlanPrice>{`R$${plan.prices.monthly}/mês`}</PlanPrice>
-            )}
+                {period ? (
+                  <PlanPrice>{`R$${plan.prices.yearly}/anual`}</PlanPrice>
+                ) : (
+                  <PlanPrice>{`R$${plan.prices.monthly}/mês`}</PlanPrice>
+                )}
 
+                <div>
+                  <ButtonSelectPlan
+                    onClick={() => handleSelectPlan(plan.id)}
+                    selected={plan.id === selectedPlan.id}
+                  >
+                    Selecionar
+                  </ButtonSelectPlan>
+                </div>
+
+                <ContentFeatures>
+                  {plan.features.map((feature) => (
+                    <li key={feature}>
+                      <img src={CheckCircle} alt="Checked" />
+                      <p>{feature}</p>
+                    </li>
+                  ))}
+                </ContentFeatures>
+              </Plan>
+            ))}
+          </ContentPlans>
+          <ContentAttendant>
             <div>
-              <ButtonSelectPlan
-                onClick={() => handleSelectPlan(plan.id)}
-                selected={plan.id === selectedPlan.id}
-              >
-                Selecionar
-              </ButtonSelectPlan>
+              <p>Atendentes</p>
+              <span>{`+R$${attendantCost}/mês por atendente`}</span>
             </div>
-
-            <ContentFeatures>
-              {plan.features.map((feature) => (
-                <li key={feature}>
-                  <img src={CheckCircle} alt="Checked" />
-                  <p>{feature}</p>
-                </li>
-              ))}
-            </ContentFeatures>
-          </Plan>
-        ))}
-      </ContentPlans>
-
-      <ContentAttendant>
-        <div>
-          <p>Atendentes</p>
-          <span>{`+R$${attendantCost}/mês por atendente`}</span>
-        </div>
-        <ContentAttendantButtons>
-          <button type="button" onClick={() => handleAttendantAmount(-1)}>
-            <FaChevronLeft size={15} />
-          </button>
-          <p>{attendantAmount}</p>
-          <button type="button" onClick={() => handleAttendantAmount(1)}>
-            <FaChevronRight size={15} />
-          </button>
-        </ContentAttendantButtons>
-      </ContentAttendant>
-      <ContentFooter>
-        <div>
-          <p>{`Total: R$${planAmount}/mês`}</p>
-          <span>
-            {`Plano selecionado: ${selectedPlan.name} - ${
-              period ? 'mensal' : 'anual'
-            }`}
-          </span>
-        </div>
-        <button type="button" onClick={() => handleConfirmation()}>
-          Contratar
-        </button>
-      </ContentFooter>
+            <ContentAttendantButtons>
+              <button type="button" onClick={() => handleAttendantAmount(-1)}>
+                <FaChevronLeft size={15} />
+              </button>
+              <p>{attendantAmount}</p>
+              <button type="button" onClick={() => handleAttendantAmount(1)}>
+                <FaChevronRight size={15} />
+              </button>
+            </ContentAttendantButtons>
+          </ContentAttendant>
+          <ContentFooter>
+            <div>
+              <p>{`Total: R$${planAmount}/mês`}</p>
+              <span>
+                {`Plano selecionado: ${selectedPlan.name} - ${
+                  period ? 'mensal' : 'anual'
+                }`}
+              </span>
+            </div>
+            <button type="button" onClick={() => handleConfirmation()}>
+              Contratar
+            </button>
+          </ContentFooter>
+        </>
+      )}
     </Container>
   );
 };

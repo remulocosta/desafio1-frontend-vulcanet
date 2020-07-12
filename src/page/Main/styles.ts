@@ -1,8 +1,17 @@
-import styled, { css } from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
 
 interface IButtonProps {
   selected: boolean;
 }
+
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
 
 export const Container = styled.div`
   width: 1150px;
@@ -14,6 +23,18 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+export const LoadingLooping = styled.div`
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    animation: ${rotate} 1s linear infinite;
+  }
 `;
 
 export const ContentPeriod = styled.div`
